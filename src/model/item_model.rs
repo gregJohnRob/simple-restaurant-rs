@@ -5,6 +5,7 @@ use deadpool_postgres::PoolError;
 
 use std::collections::HashMap;
 
+#[derive(Debug)]
 pub enum ItemModelError {
     PoolError(PoolError),
 }

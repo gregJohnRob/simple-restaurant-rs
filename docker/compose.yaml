@@ -1,10 +1,12 @@
 services:
- 
+ # TODO: Add init script for db to create user and SCHEMA
   db:
     image: postgres
     restart: always
     environment:
       POSTGRES_PASSWORD: example
+    ports:
+      - 5432:5432
   
   adminer:
     image: adminer
