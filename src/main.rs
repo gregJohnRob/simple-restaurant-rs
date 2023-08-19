@@ -11,7 +11,7 @@ async fn main() -> std::io::Result<()> {
 
     log::info!("starting HTTP server at http://localhost:8080");
 
-    HttpServer::new(|| {
+    HttpServer::new(move || {
         App::new()
             .wrap(middleware::Logger::default())
             .app_data(web::JsonConfig::default().limit(4096))
