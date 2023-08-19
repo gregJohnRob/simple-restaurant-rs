@@ -1,6 +1,8 @@
 use actix_web::{middleware, web, App, HttpServer};
 
 mod api;
+mod domain;
+mod model;
 mod protocol;
 
 #[actix_web::main]
@@ -13,6 +15,7 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .wrap(middleware::Logger::default())
             .app_data(web::JsonConfig::default().limit(4096))
+            .app_data(web::Data::new(model::Model::build()))
             .service(api::get_item)
             .service(api::get_items)
     })
