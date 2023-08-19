@@ -1,5 +1,5 @@
-use std::sync::Arc;
 use deadpool_postgres::Pool;
+use std::sync::Arc;
 
 pub mod item_model;
 
@@ -11,7 +11,7 @@ pub struct Model {
 impl Model {
     pub fn build(pool: Pool) -> Model {
         Model {
-            item_model: Arc::new(item_model::PostgresItemModel{pool}),
+            item_model: Arc::new(item_model::PostgresItemModel::build(pool)),
         }
     }
 }

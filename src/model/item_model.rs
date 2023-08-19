@@ -55,12 +55,16 @@ impl Default for DummyItemModel {
 }
 
 pub struct PostgresItemModel {
-    pub pool: Pool,
+    pool: Pool,
 }
 
 impl PostgresItemModel {
     const SELECT_ITEM: &str = "SELECT item_id, name FROM restaurant.items WHERE item_id = $1;";
     const SELECT_ALL_ITEMS: &str = "SELECT item_id, name FROM restaurant.items;";
+    
+    pub fn build(pool: Pool) -> PostgresItemModel {
+        PostgresItemModel { pool }
+    }
 }
 
 #[async_trait]
